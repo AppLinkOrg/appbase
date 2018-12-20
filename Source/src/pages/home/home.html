@@ -1,0 +1,248 @@
+<ion-header>
+  <div class="padding-20 bg-primary ">
+    <div>
+      <div class="flex-row flex-center">
+        <div>
+          <i class="material-icons txt-white h2" menuToggle>list</i>
+        </div>
+        <div class="flex-1">
+          <div class="flex-row flex-center">
+            <div class="flex-1 text-right margin-right-10">
+              <i class="material-icons h1" (click)="menuChange(0)" [class.txt-white]="menu==0" [class.txt-light-white]="menu!=0"
+                [class.h2]="menu!=0">swap_vert</i>
+            </div>
+            <div>
+              <i class="material-icons h1" (click)="menuChange(1)" [class.txt-white]="menu==1" [class.txt-light-white]="menu!=1"
+                [class.h2]="menu!=1">home</i>
+            </div>
+            <div class="flex-1 margin-left-10">
+              <i class="material-icons h1" (click)="menuChange(2)" [class.txt-white]="menu==2" [class.txt-light-white]="menu!=2"
+                [class.h2]="menu!=2">date_range</i>
+            </div>
+          </div>
+        </div>
+        <div>
+          <i class="material-icons txt-white h2">search</i>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉加载最新信息" refreshingSpinner="circles"
+      refreshingText="刷新中">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <div class="body">
+    <ion-slides #menu_slider>
+      <ion-slide class="body">
+        <ion-slides #menu0_slider>
+          <ion-slide class="body">
+            <ion-scroll scrollY="true" class="fullheight">
+              <div class="body" (swipe)="swipe($event,0,0)">
+                <div class="padding">
+                  aa
+                </div>
+              </div>
+              <div style="height:50px;"></div>
+            </ion-scroll>
+          </ion-slide>
+        </ion-slides>
+      </ion-slide>
+      <ion-slide class="body">
+        <div class="bg-primary flex-row">
+          <div class="flex-row flex-1">
+            <div class="flex-1"></div>
+            <div class="padding-20 txt-white no_active" [class.sub_active]="menu1==0" (click)="menu1Change(0)">{{Lang["recommend"]}}</div>
+            <div class="flex-1"></div>
+          </div>
+          <div class="flex-row flex-1">
+            <div class="flex-1"></div>
+            <div class="padding-20 txt-white no_active" [class.sub_active]="menu1==1" (click)="menu1Change(1)">{{Lang["general"]}}</div>
+            <div class="flex-1"></div>
+          </div>
+          <div class="flex-row flex-1">
+            <div class="flex-1"></div>
+            <div class="padding-20 txt-white no_active" [class.sub_active]="menu1==2" (click)="menu1Change(2)">{{Lang["focuson"]}}</div>
+            <div class="flex-1"></div>
+          </div>
+        </div>
+        <ion-slides #menu1_slider>
+          <ion-slide class="body">
+            <div class="body" (swipe)="swipe($event,1,0)">
+
+            </div>
+          </ion-slide>
+          <ion-slide class="body">
+            <ion-scroll scrollY="true" class="fullheight">
+              <div class="bg-primary bgafterbanner"></div>
+              <div>
+                <div class="padding">
+                  <ion-slides class="adv_banner">
+                    <ion-slide *ngFor="let item of indexbanner">
+                      <img src="{{uploadpath}}indexbanner/{{item.img}}" />
+                    </ion-slide>
+                  </ion-slides>
+                </div>
+                <div (swipe)="swipe($event,1,1)">
+                  <div class="padding">
+                    <div class="flex-row flex-center text-center">
+                      <div class="flex-1 ">
+                        <div>
+                          <img class="icon-50 radius-50 bg-primary shadow" src="{{uploadpath}}resource/{{res.icon1}}" />
+                        </div>
+                        <div class="h6 margin-top">预留1</div>
+                      </div>
+                      <div class="flex-1">
+
+                        <div>
+                          <img class="icon-50 radius-50 bg-primary shadow" src="{{uploadpath}}resource/{{res.icon2}}" />
+                        </div>
+                        <div class="h6 margin-top">预留2</div>
+                      </div>
+                      <div class="flex-1">
+
+                        <div>
+                          <img class="icon-50 radius-50 bg-primary shadow" src="{{uploadpath}}resource/{{res.icon3}}" />
+                        </div>
+                        <div class="h6 margin-top">预留3</div>
+                      </div>
+                      <div class="flex-1">
+
+                        <div>
+                          <img class="icon-50 radius-50 bg-primary shadow" src="{{uploadpath}}resource/{{res.icon4}}" />
+                        </div>
+                        <div class="h6 margin-top">预留4</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hr" ></div>
+                <div *ngIf="babylist.length==0" class="padding">
+                    <div class="text-center margin-top">
+                        <div (click)="addBaby()">
+                            <img class="icon-50" src="{{uploadpath}}resource/{{res.babyface}}" />
+                        </div>
+                        <div class="txt-primary h4 margin-top" (click)="addBaby()">
+                            {{Lang["addkidfirst"]}}
+                        </div>
+                    </div>
+                </div>
+                <div class="hr" ></div>
+              </div>
+              <div style="height:50px;"></div>
+            </ion-scroll>
+          </ion-slide>
+          <ion-slide class="body">
+            <ion-scroll scrollY="true" class="fullheight">
+              <div class="body padding-20" (swipe)="swipe($event,1,2)">
+                a
+              </div>
+              <div style="height:50px;"></div>
+            </ion-scroll>
+          </ion-slide>
+        </ion-slides>
+      </ion-slide>
+      <ion-slide class="body">
+        <div class="bg-primary flex-row">
+          <div class="flex-row flex-1">
+            <div class="flex-1"></div>
+            <div class="padding-20 txt-white no_active" [class.sub_active]="menu2==0" (click)="menu2Change(0)">待办事务</div>
+            <div class="flex-1"></div>
+          </div>
+          <div class="flex-row flex-1">
+            <div class="flex-1"></div>
+            <div class="padding-20 txt-white no_active" [class.sub_active]="menu2==1" (click)="menu2Change(1)">进行中</div>
+            <div class="flex-1"></div>
+          </div>
+        </div>
+        <ion-slides #menu2_slider>
+          <ion-slide class="body">
+            <ion-scroll scrollY="true" class="fullheight">
+              <div class="body" (swipe)="swipe($event,2,0)">
+                a
+
+                <div style="height:50px;"></div>
+
+              </div>
+            </ion-scroll>
+          </ion-slide>
+          <ion-slide class="body">
+            <ion-scroll scrollY="true" class="fullheight">
+              <div class="body" (swipe)="swipe($event,2,1)">
+                a
+                <div style="height:50px;"></div>
+
+              </div>
+            </ion-scroll>
+          </ion-slide>
+        </ion-slides>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+
+
+  <!--menuToggle
+    
+    <div class="body">
+
+        <ion-slides direction="vertical">
+            <ion-slide class="padding body" style="padding-top:0px;">
+                <div class="sliderbody">
+                    <div class="h3">
+                        罗湖区
+                    </div>
+                    <div class="h4">
+                        {{dashboard.city}}
+                    </div>
+                    <div class="h5">
+                        温度：{{dashboard.wendu}}&#176;C
+                    </div>
+                    <div class="h5">
+                        湿度：{{dashboard.shidu}}
+                    </div>
+                    <div class="inbottom">
+                        <div class="h6">环保综合指数：</div>
+                        <div class="zhishu">68</div>
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide class="padding body">
+                <div class="padding bg sliderbody">
+                    <div class="h3 ">数据数字化</div>
+                    <div class="margin-top-10 border-bottom-bold "></div>
+                    <div class="sliderbody margin-top-10">
+                        <div class="sliderbody_map" #home_map id="home_map"></div>
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide class="padding body">
+                <div class="padding bg sliderbody">
+                    <div class="h3 ">综合概况</div>
+                    <div class="margin-top-10 border-bottom-bold "></div>
+                    <div class="flex-row">
+                        <div class="flex-2 h5">街道</div>
+                        <div class="flex-1 h5">环保指数</div>
+                        <div class="flex-1 h5">油烟指数</div>
+                        <div class="flex-1 h5">检测数量</div>
+                    </div>
+                    <div class="margin-top-10 border-bottom "></div>
+                    <div class="flex-row" *ngFor="let item of dashboard.streets;let i=index;">
+                        <div class="flex-2 h5">{{i+1}}. {{item.areaname}}</div>
+                        <div class="flex-1 h5">{{item.avg_index}}</div>
+                        <div class="flex-1 h5">{{item.avg_index}}</div>
+                        <div class="flex-1 h5">{{item.object_count}}</div>
+                    </div>
+                </div>
+            </ion-slide>
+        </ion-slides>
+    </div>
+-->
+</ion-content>

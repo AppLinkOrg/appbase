@@ -1,0 +1,71 @@
+page-home {
+    .toolbar-background-ios{
+      background-color:transparent;
+      border-style: unset !important;
+    }
+    .toolbar-background-md{
+      background-color:transparent;
+      border-style: unset !important;
+    }
+    .slide-zoom{
+        height: 100%;
+    }
+    .sliderbody{
+        height: 100%;
+    }
+
+    .bg{
+        background-color:rgba(0,0,0,.54);
+    }
+    .body{
+        height: 100%;
+    }
+    .swiper-slide{
+        text-align: left;
+    }
+    .slide-zoom{
+        text-align: left;
+    }
+    .inbottom{
+        position: absolute;
+        bottom: 0px;
+    }
+    .zhishu{
+        font-size: px(72) !important;
+    }
+    .sliderbody_map{
+        height: px(450);
+    }
+    .flex-2{
+        flex:2;
+    }
+    .no_active{
+        border-bottom: 3px transparent solid;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+    }
+    .sub_active{
+        border-bottom: 3px white solid;
+        font-weight: 500;
+    }
+    .header-md::after{
+        background-image: unset;
+    }
+    .bgafterbanner{
+        height: px(130);
+        position: absolute;
+        width: px(375);
+    }
+    .adv_banner{
+        height: px(150);
+        border-radius: 5px;
+    }
+    .adv_banner img{
+        height: px(150);
+        width: 100%;
+        border-radius: 5px;
+    }
+}

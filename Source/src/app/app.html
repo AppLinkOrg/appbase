@@ -1,0 +1,67 @@
+<ion-menu [content]="content" class="membermenulist">
+  <ion-content>
+    <div class="black-block topbg" [style.background-image]="'url('+uploadpath+'resource/'+res.membertopbg+')'">
+      <div style="padding-top:80px">
+        <div class="padding">
+          <div>
+            <img class="icon-50 radius-50" [src]='MemberInfo==null||MemberInfo.photo==""?uploadpath+"inst/"+InstInfo.memberlogo:uploadpath+"member/"+MemberInfo.photo' />
+          </div>
+          <div class="txt-white margin-top h5" >{{MemberInfo==null?Lang["notlogin"]:MemberInfo.name}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="gray-block padding-top">
+      <div class="white-block padding no-padding-right" >
+        <div class="padding" menuClose (click)="openPage(pages[0])">
+
+          <div class=" flex-row flex-center">
+            <div>
+              <img src="{{uploadpath}}resource/{{res.menu_home}}" class="icon-20" />
+            </div>
+            <div class="margin-left flex-1">
+              {{Lang["menu_home"]}}
+            </div>
+          </div>
+        </div>
+        <div class="padding"  menuClose (click)="openPage(pages[1])">
+          <div class=" flex-row flex-center">
+            <div>
+              <img src="{{uploadpath}}resource/{{res.menu_list}}" class="icon-20" />
+            </div>
+            <div class="margin-left flex-1">
+              {{Lang["menu_list"]}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+    <div class="fixedbottommenu  border-top" >
+      <div class="padding">
+        <div class="flex-row flex-center">
+          <div (click)="openSetting()">
+            <img class="icon-20" src="{{uploadpath}}resource/{{res.menu_setting}}" />
+          </div>
+          <div class="h5 margin-left" (click)="openSetting()">
+            {{Lang["menu_setting"]}}
+          </div>
+          <div class="flex-1"></div>
+          <div (click)="exitapp()">
+            <img class="icon-20" src="{{uploadpath}}resource/{{res.menu_shutdown}}" />
+          </div>
+          <div class="h5 margin-left" (click)="exitapp()">
+            {{Lang["menu_shutdown"]}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
